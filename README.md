@@ -1,1 +1,1 @@
-# SVSlidingPanel
+# SlidingPanel
