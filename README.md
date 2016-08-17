@@ -10,7 +10,7 @@ How to use:
     let slidingPanel = SVSlidingPanelViewController()
     
 
-2.  Assign the controller which you wnat to show in center panel
+2.  Assign the controller which you want to show in center panel
     
     let  detailController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SVDetailViewController") as! SVDetailViewController
     let navigation = UINavigationController(rootViewController:detailController)
