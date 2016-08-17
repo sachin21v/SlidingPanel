@@ -7,29 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F635FF6B1D5FB92F00148476 /* SVMenuOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F635FF6A1D5FB92F00148476 /* SVMenuOptionManager.swift */; };
-		F6AB4F6B1D5AEFF400AADEE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB4F6A1D5AEFF400AADEE6 /* AppDelegate.swift */; };
-		F6AB4F6D1D5AEFF400AADEE6 /* SVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB4F6C1D5AEFF400AADEE6 /* SVViewController.swift */; };
+		F69F97921D643AEF004A6EB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978B1D643AEF004A6EB5 /* AppDelegate.swift */; };
+		F69F97931D643AEF004A6EB5 /* SVDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978C1D643AEF004A6EB5 /* SVDetailViewController.swift */; };
+		F69F97941D643AEF004A6EB5 /* SVMenuOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978D1D643AEF004A6EB5 /* SVMenuOptionManager.swift */; };
+		F69F97951D643AEF004A6EB5 /* SVMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978E1D643AEF004A6EB5 /* SVMenuViewController.swift */; };
+		F69F97961D643AEF004A6EB5 /* SVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978F1D643AEF004A6EB5 /* SVViewController.swift */; };
+		F69F97971D643AEF004A6EB5 /* SVSlidingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F97911D643AEF004A6EB5 /* SVSlidingPanelViewController.swift */; };
+		F69F979A1D643B46004A6EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69F97981D643B46004A6EB5 /* Assets.xcassets */; };
+		F69F979B1D643B46004A6EB5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F69F97991D643B46004A6EB5 /* Info.plist */; };
 		F6AB4F701D5AEFF400AADEE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB4F6E1D5AEFF400AADEE6 /* Main.storyboard */; };
-		F6AB4F721D5AEFF400AADEE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6AB4F711D5AEFF400AADEE6 /* Assets.xcassets */; };
 		F6AB4F751D5AEFF400AADEE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB4F731D5AEFF400AADEE6 /* LaunchScreen.storyboard */; };
-		F6AB4F7D1D5AF00300AADEE6 /* SVSlidingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB4F7C1D5AF00300AADEE6 /* SVSlidingPanelViewController.swift */; };
-		F6AB4F7F1D5B0A1200AADEE6 /* SVMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB4F7E1D5B0A1200AADEE6 /* SVMenuViewController.swift */; };
-		F6AB4F811D5B0A3F00AADEE6 /* SVDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB4F801D5B0A3F00AADEE6 /* SVDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F635FF6A1D5FB92F00148476 /* SVMenuOptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMenuOptionManager.swift; sourceTree = "<group>"; };
+		F69F978B1D643AEF004A6EB5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F69F978C1D643AEF004A6EB5 /* SVDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDetailViewController.swift; sourceTree = "<group>"; };
+		F69F978D1D643AEF004A6EB5 /* SVMenuOptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMenuOptionManager.swift; sourceTree = "<group>"; };
+		F69F978E1D643AEF004A6EB5 /* SVMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMenuViewController.swift; sourceTree = "<group>"; };
+		F69F978F1D643AEF004A6EB5 /* SVViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVViewController.swift; sourceTree = "<group>"; };
+		F69F97911D643AEF004A6EB5 /* SVSlidingPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVSlidingPanelViewController.swift; sourceTree = "<group>"; };
+		F69F97981D643B46004A6EB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F69F97991D643B46004A6EB5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6AB4F671D5AEFF400AADEE6 /* SVSlidingPanel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVSlidingPanel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6AB4F6A1D5AEFF400AADEE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6AB4F6C1D5AEFF400AADEE6 /* SVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVViewController.swift; sourceTree = "<group>"; };
 		F6AB4F6F1D5AEFF400AADEE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F6AB4F711D5AEFF400AADEE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6AB4F741D5AEFF400AADEE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F6AB4F761D5AEFF400AADEE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6AB4F7C1D5AF00300AADEE6 /* SVSlidingPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVSlidingPanelViewController.swift; sourceTree = "<group>"; };
-		F6AB4F7E1D5B0A1200AADEE6 /* SVMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMenuViewController.swift; sourceTree = "<group>"; };
-		F6AB4F801D5B0A3F00AADEE6 /* SVDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F69F978A1D643AEF004A6EB5 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				F69F97981D643B46004A6EB5 /* Assets.xcassets */,
+				F69F97991D643B46004A6EB5 /* Info.plist */,
+				F69F978B1D643AEF004A6EB5 /* AppDelegate.swift */,
+				F69F978C1D643AEF004A6EB5 /* SVDetailViewController.swift */,
+				F69F978D1D643AEF004A6EB5 /* SVMenuOptionManager.swift */,
+				F69F978E1D643AEF004A6EB5 /* SVMenuViewController.swift */,
+				F69F978F1D643AEF004A6EB5 /* SVViewController.swift */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		F69F97901D643AEF004A6EB5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F69F97911D643AEF004A6EB5 /* SVSlidingPanelViewController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		F6AB4F5E1D5AEFF400AADEE6 = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +85,10 @@
 		F6AB4F691D5AEFF400AADEE6 /* SVSlidingPanel */ = {
 			isa = PBXGroup;
 			children = (
-				F6AB4F6A1D5AEFF400AADEE6 /* AppDelegate.swift */,
-				F6AB4F761D5AEFF400AADEE6 /* Info.plist */,
-				F6AB4F711D5AEFF400AADEE6 /* Assets.xcassets */,
+				F69F978A1D643AEF004A6EB5 /* Demo */,
+				F69F97901D643AEF004A6EB5 /* Source */,
 				F6AB4F731D5AEFF400AADEE6 /* LaunchScreen.storyboard */,
 				F6AB4F6E1D5AEFF400AADEE6 /* Main.storyboard */,
-				F6AB4F7C1D5AF00300AADEE6 /* SVSlidingPanelViewController.swift */,
-				F6AB4F6C1D5AEFF400AADEE6 /* SVViewController.swift */,
-				F6AB4F7E1D5B0A1200AADEE6 /* SVMenuViewController.swift */,
-				F6AB4F801D5B0A3F00AADEE6 /* SVDetailViewController.swift */,
-				F635FF6A1D5FB92F00148476 /* SVMenuOptionManager.swift */,
 			);
 			path = SVSlidingPanel;
 			sourceTree = "<group>";
@@ -134,8 +151,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F69F979B1D643B46004A6EB5 /* Info.plist in Resources */,
 				F6AB4F751D5AEFF400AADEE6 /* LaunchScreen.storyboard in Resources */,
-				F6AB4F721D5AEFF400AADEE6 /* Assets.xcassets in Resources */,
+				F69F979A1D643B46004A6EB5 /* Assets.xcassets in Resources */,
 				F6AB4F701D5AEFF400AADEE6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,12 +165,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6AB4F811D5B0A3F00AADEE6 /* SVDetailViewController.swift in Sources */,
-				F6AB4F6D1D5AEFF400AADEE6 /* SVViewController.swift in Sources */,
-				F635FF6B1D5FB92F00148476 /* SVMenuOptionManager.swift in Sources */,
-				F6AB4F7D1D5AF00300AADEE6 /* SVSlidingPanelViewController.swift in Sources */,
-				F6AB4F7F1D5B0A1200AADEE6 /* SVMenuViewController.swift in Sources */,
-				F6AB4F6B1D5AEFF400AADEE6 /* AppDelegate.swift in Sources */,
+				F69F97931D643AEF004A6EB5 /* SVDetailViewController.swift in Sources */,
+				F69F97971D643AEF004A6EB5 /* SVSlidingPanelViewController.swift in Sources */,
+				F69F97921D643AEF004A6EB5 /* AppDelegate.swift in Sources */,
+				F69F97951D643AEF004A6EB5 /* SVMenuViewController.swift in Sources */,
+				F69F97961D643AEF004A6EB5 /* SVViewController.swift in Sources */,
+				F69F97941D643AEF004A6EB5 /* SVMenuOptionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,8 +283,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				INFOPLIST_FILE = SVSlidingPanel/Info.plist;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = SVSlidingPanel/Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.infoedge.SVSlidingPanel;
@@ -278,8 +296,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				INFOPLIST_FILE = SVSlidingPanel/Info.plist;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = SVSlidingPanel/Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.infoedge.SVSlidingPanel;
