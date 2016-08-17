@@ -17,13 +17,13 @@ How to use:
     slidingPanel.centerPanel = navigation
     
 
-3. Assign the controller which you wnat to show in left panel
+3. Assign the controller which you want to show in left panel
   
     let  lefthamburgerMenuController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SVMenuViewController") as! SVMenuViewController  
     slidingPanel.leftPanel = lefthamburgerMenuController
 
 
-4. Assign the controller which you wnat to show in right panel same as above.
+4. Assign the controller which you want to show in right panel same as above.
 
 
 5. You can configure left panel and right panel visible width(%) should be between 0 and 1.
