@@ -181,7 +181,9 @@ class SVSlidingPanelViewController: UIViewController {
         self.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         
         self.leftPanelContainerView.autoresizingMask = [.FlexibleHeight, .FlexibleRightMargin]
-        self.leftPanelContainerView.frame = self.view.bounds
+        var leftPanelFrame = self.view.bounds
+        leftPanelFrame.size.width = self.leftSlidingPanelVisibleWidth
+        self.leftPanelContainerView.frame = leftPanelFrame
         self.leftPanel?.view.frame = self.leftPanelContainerView.frame
         
         self.centerPanelContainerView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
@@ -190,7 +192,9 @@ class SVSlidingPanelViewController: UIViewController {
         
         
         self.rightPanelContainerView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleHeight]
-        self.rightPanelContainerView.frame = self.view.bounds
+        var rightPanelFrame = self.view.bounds
+        rightPanelFrame.size.width = self.rightSlidingPanelVisibleWidth
+        self.rightPanelContainerView.frame = rightPanelFrame
         self.rightPanel?.view.frame = self.rightPanelContainerView.frame
         
         self.view.addSubview(self.leftPanelContainerView)
@@ -275,21 +279,27 @@ class SVSlidingPanelViewController: UIViewController {
             switch self.slidingPanelState {
             case .LeftVisible:
                 leftPanelFrame.origin.x = 0.0
+                leftPanelFrame.size.width = self.leftSlidingPanelVisibleWidth
                 rightPanelFrame.origin.x = self.view.frame.width + self.leftSlidingPanelVisibleWidth
                 
             case .CenterVisible:
                 leftPanelFrame.origin.x = self.view.frame.origin.x - self.leftSlidingPanelVisibleWidth
+                leftPanelFrame.size.width = self.leftSlidingPanelVisibleWidth
                 rightPanelFrame.origin.x = self.view.frame.width
+                rightPanelFrame.size.width = self.rightSlidingPanelVisibleWidth
                 
             case .RightVisible:
                 leftPanelFrame.origin.x = self.view.frame.origin.x - leftPanelFrame.width
                 rightPanelFrame.origin.x = rightPanelFrame.width - self.rightSlidingPanelVisibleWidth
+                rightPanelFrame.size.width = self.rightSlidingPanelVisibleWidth
             }
             
         }
         else {
             leftPanelFrame.origin.x = 0.0
+            leftPanelFrame.size.width = self.leftSlidingPanelVisibleWidth
             rightPanelFrame.origin.x = rightPanelFrame.origin.x - self.rightSlidingPanelVisibleWidth
+            rightPanelFrame.size.width = self.rightSlidingPanelVisibleWidth
         }
 
         
