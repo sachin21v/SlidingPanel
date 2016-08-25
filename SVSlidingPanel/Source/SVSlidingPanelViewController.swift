@@ -162,13 +162,13 @@ class SVSlidingPanelViewController: UIViewController {
     
     private var leftSlidingPanelVisibleWidth: CGFloat {
         
-        return self.view.frame.width * self.leftPanelVisibleWidth
+        return self.view.bounds.width * self.leftPanelVisibleWidth
     }
     
     
     private var rightSlidingPanelVisibleWidth: CGFloat {
         
-        return self.view.frame.width * self.rightPanelVisibleWidth
+        return self.view.bounds.width * self.rightPanelVisibleWidth
     }
     
     
