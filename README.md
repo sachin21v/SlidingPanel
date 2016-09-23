@@ -12,14 +12,14 @@ How to use:
 
 2.  Assign the controller which you want to show in center panel
     
-    let  detailController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SVDetailViewController") as! SVDetailViewController
+    let  detailController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SVDetailViewController") as! SVDetailViewController
     let navigation = UINavigationController(rootViewController:detailController)
     slidingPanel.centerPanel = navigation
     
 
 3. Assign the controller which you want to show in left panel
   
-    let  lefthamburgerMenuController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SVMenuViewController") as! SVMenuViewController  
+    let  lefthamburgerMenuController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SVMenuViewController") as! SVMenuViewController  
     slidingPanel.leftPanel = lefthamburgerMenuController
 
 
