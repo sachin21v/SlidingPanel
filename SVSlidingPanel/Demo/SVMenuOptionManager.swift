@@ -28,7 +28,7 @@ enum SVMenuOptions {
     
     var menuTitle: String {
         
-        return String(self)
+        return String(describing: self)
     }
     
 }
@@ -48,12 +48,12 @@ class SVMenuOptionManager: NSObject {
         super.init()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let  lefthamburgerMenuController : SVMenuViewController = storyboard.instantiateViewControllerWithIdentifier("SVMenuViewController") as! SVMenuViewController
+        let  lefthamburgerMenuController : SVMenuViewController = storyboard.instantiateViewController(withIdentifier: "SVMenuViewController") as! SVMenuViewController
         
-        let  righthamburgerMenuController : SVMenuViewController = storyboard.instantiateViewControllerWithIdentifier("SVMenuViewController") as! SVMenuViewController
+        let  righthamburgerMenuController : SVMenuViewController = storyboard.instantiateViewController(withIdentifier: "SVMenuViewController") as! SVMenuViewController
         
         
-        let  detailController : SVDetailViewController = storyboard.instantiateViewControllerWithIdentifier("SVDetailViewController") as! SVDetailViewController
+        let  detailController : SVDetailViewController = storyboard.instantiateViewController(withIdentifier: "SVDetailViewController") as! SVDetailViewController
         let navigation = UINavigationController(rootViewController:detailController)
         
         self.slidingPanel.leftPanel = lefthamburgerMenuController
@@ -63,12 +63,12 @@ class SVMenuOptionManager: NSObject {
         
         lefthamburgerMenuController.menuSelectionClosure = {[weak self](selectedMenuOption: SVMenuOptions, animated:Bool) in
             
-            self?.showScreenForMenuOption(selectedMenuOption, animation: animated)
+            self?.showScreenForMenuOption(menuOntion: selectedMenuOption, animation: animated)
         }
         
         righthamburgerMenuController.menuSelectionClosure = {[weak self](selectedMenuOption: SVMenuOptions, animated:Bool) in
             
-            self?.showScreenForMenuOption(selectedMenuOption, animation: animated)
+            self?.showScreenForMenuOption(menuOntion: selectedMenuOption, animation: animated)
         }
 
         
@@ -81,7 +81,7 @@ class SVMenuOptionManager: NSObject {
         let detailController = navigationController.viewControllers.first as! SVDetailViewController
         detailController.logoImageView.image = UIImage(named: menuOntion.menuTitle)
         
-        self.slidingPanel.showCenterPanel(animated)
+        self.slidingPanel.showCenterPanel(animated: animated)
         
     }
 }

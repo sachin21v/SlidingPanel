@@ -33,13 +33,13 @@ class SVMenuViewController: UIViewController {
 extension SVMenuViewController:UITableViewDelegate
 {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let menuItem = self.menuItems[indexPath.row]
         self.menuSelectionClosure(menuItem, true)
@@ -53,15 +53,15 @@ extension SVMenuViewController:UITableViewDelegate
 extension SVMenuViewController:UITableViewDataSource
 {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return menuItems.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         let menuItem = self.menuItems[indexPath.row]
         
         cell.textLabel?.text = menuItem.menuTitle

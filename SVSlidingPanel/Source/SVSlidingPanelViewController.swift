@@ -20,7 +20,7 @@ enum SVSlidingPanelState {
     case RightVisible
 }
 
-class SVSlidingPanelViewController: UIViewController {
+class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     //MARK: - Public properties
@@ -56,6 +56,18 @@ class SVSlidingPanelViewController: UIViewController {
     //MARK: - Enabling panning on center sliding panel
     var shouldPanEnabledSliding: Bool = true
     
+    //MARK: - Enabling panning on  top view controller of 
+    // center sliding panel only
+    var shouldPanningLimitedToTopViewController: Bool = true
+    
+    
+    //MARK: - Enabling  left over panning on center sliding panel
+    var shouldAllowLeftOverPanning: Bool = true
+    
+    
+    //MARK: - Enabling right over panning on center sliding panel
+    var shouldAllowRightOverPanning: Bool = true
+    
     
     
     //MARK: - Enabling tapping on center sliding panel
@@ -83,14 +95,14 @@ class SVSlidingPanelViewController: UIViewController {
     //MARK: - Left panel holding the controller to show
     var leftPanel: UIViewController? {
         didSet{
-            oldValue?.willMoveToParentViewController(nil)
+            oldValue?.willMove(toParentViewController: nil)
             oldValue?.view.removeFromSuperview()
             oldValue?.removeFromParentViewController()
             
-            self.leftPanel?.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+            self.leftPanel?.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             self.addChildViewController(self.leftPanel!)
             self.leftPanelContainerView.addSubview((self.leftPanel?.view)!)
-            self.leftPanel?.didMoveToParentViewController(self)
+            self.leftPanel?.didMove(toParentViewController: self)
         }
     }
     
@@ -100,14 +112,19 @@ class SVSlidingPanelViewController: UIViewController {
     var centerPanel: UIViewController? {
         didSet{
             
-            oldValue?.willMoveToParentViewController(nil)
+            oldValue?.willMove(toParentViewController: nil)
             oldValue?.view.removeFromSuperview()
             oldValue?.removeFromParentViewController()
             
-            self.centerPanel?.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+            self.centerPanel?.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             self.addChildViewController(self.centerPanel!)
             self.centerPanelContainerView.addSubview((self.centerPanel?.view)!)
-            self.centerPanel?.didMoveToParentViewController(self)
+            self.centerPanel?.didMove(toParentViewController: self)
+            
+            if self.shouldPanEnabledSliding {
+             self.addPanGestureToView(view: (self.centerPanel?.view)!)
+            }
+            
         }
     }
     
@@ -116,14 +133,14 @@ class SVSlidingPanelViewController: UIViewController {
     //MARK: - Right panel holding the controller to show
     var rightPanel: UIViewController? {
         didSet{
-            oldValue?.willMoveToParentViewController(nil)
+            oldValue?.willMove(toParentViewController: nil)
             oldValue?.view.removeFromSuperview()
             oldValue?.removeFromParentViewController()
             
-            self.rightPanel?.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+            self.rightPanel?.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             self.addChildViewController(self.rightPanel!)
             self.rightPanelContainerView.addSubview((self.rightPanel?.view)!)
-            self.rightPanel?.didMoveToParentViewController(self)
+            self.rightPanel?.didMove(toParentViewController: self)
         }
     }
     
@@ -145,16 +162,16 @@ class SVSlidingPanelViewController: UIViewController {
                 
             case .LeftVisible:
                 self.visibleController = self.leftPanel
-                self.leftPanelContainerView.userInteractionEnabled = true
+                self.leftPanelContainerView.isUserInteractionEnabled = true
                 
             case .CenterVisible:
                 self.visibleController = self.centerPanel
-                self.leftPanelContainerView.userInteractionEnabled = false
-                self.rightPanelContainerView.userInteractionEnabled = false
+                self.leftPanelContainerView.isUserInteractionEnabled = false
+                self.rightPanelContainerView.isUserInteractionEnabled = false
                 
             case .RightVisible:
                 self.visibleController = self.rightPanel
-                self.rightPanelContainerView.userInteractionEnabled = true
+                self.rightPanelContainerView.isUserInteractionEnabled = true
                 
             }
         }
@@ -177,21 +194,21 @@ class SVSlidingPanelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        self.view.backgroundColor = UIColor.white
+        self.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        self.leftPanelContainerView.autoresizingMask = [.FlexibleHeight, .FlexibleRightMargin]
+        self.leftPanelContainerView.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]
         var leftPanelFrame = self.view.bounds
         leftPanelFrame.size.width = self.leftSlidingPanelVisibleWidth
         self.leftPanelContainerView.frame = leftPanelFrame
         self.leftPanel?.view.frame = self.leftPanelContainerView.frame
         
-        self.centerPanelContainerView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        self.centerPanelContainerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.centerPanelContainerView.frame = self.view.bounds
         self.centerPanel?.view.frame = self.centerPanelContainerView.frame
         
         
-        self.rightPanelContainerView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleHeight]
+        self.rightPanelContainerView.autoresizingMask = [.flexibleLeftMargin, .flexibleHeight]
         var rightPanelFrame = self.view.bounds
         rightPanelFrame.size.width = self.rightSlidingPanelVisibleWidth
         self.rightPanelContainerView.frame = rightPanelFrame
@@ -206,40 +223,37 @@ class SVSlidingPanelViewController: UIViewController {
         self.hamburgurButtonForRightPanel()
         
         self.slidingPanelState = .CenterVisible
-        self.view?.bringSubviewToFront(self.centerPanelContainerView)
+        self.view?.bringSubview(toFront: self.centerPanelContainerView)
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.layoutPanelContainer()
-        self.styleForContainer(self.centerPanelContainerView, animationOption: false)
+        self.styleForContainer(containerView: self.centerPanelContainerView, animationOption: false)
     }
     
-    
-    override func shouldAutorotate() -> Bool {
-        
-        if let controller = self.visibleController {
-            if self.shouldAutoRotationEnabled  && controller.respondsToSelector(#selector(shouldAutorotate)){
+    open override var shouldAutorotate: Bool {
+        get {
+            if let controller = self.visibleController {
+                if self.shouldAutoRotationEnabled {
                 
-                return controller.shouldAutorotate()
-            }
-            else {
-                return false
+                    return controller.shouldAutorotate
+                }
             }
             
-        }
-        else {
             return false
         }
     }
     
-    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+    
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         
         self.layoutPanelContainer()
-        self.styleForContainer(self.centerPanelContainerView, animationOption: false)
+        self.styleForContainer(containerView: self.centerPanelContainerView, animationOption: false)
     }
+    
     
     
     //MARK: - Container Layout Methods
@@ -318,7 +332,7 @@ class SVSlidingPanelViewController: UIViewController {
             if let controllerForHamburgur = self.centerPanel as? UINavigationController {
                 
                 let barButton =  self.leftPanelHamburgurButton()
-                barButton.tintColor = UIColor.blackColor()
+                barButton.tintColor = UIColor.black
                 controllerForHamburgur.viewControllers.first?.navigationItem.leftBarButtonItem = barButton
             }
         }
@@ -331,7 +345,7 @@ class SVSlidingPanelViewController: UIViewController {
             if let controllerForHamburgur = self.centerPanel as? UINavigationController {
                 
                 let barButton =  self.rightPanelHamburgurButton()
-                barButton.tintColor = UIColor.blackColor()
+                barButton.tintColor = UIColor.black
                 controllerForHamburgur.viewControllers.first?.navigationItem.rightBarButtonItem = barButton
             }
         }
@@ -342,7 +356,7 @@ class SVSlidingPanelViewController: UIViewController {
     
     private func animateCenterSlidingPanel( onCompletion closure: ((Bool) -> Void)?) {
         
-        UIView.animateWithDuration( self.animationDuration, delay: 0.0, options: [.CurveLinear, .LayoutSubviews], animations: {
+        UIView.animate( withDuration: self.animationDuration, delay: 0.0, options: [.curveLinear, .layoutSubviews], animations: {
             
             self.layoutPanelContainer()
             
@@ -350,7 +364,7 @@ class SVSlidingPanelViewController: UIViewController {
             
             if self.shouldBounceEnableSliding {
                 
-               UIView.animateWithDuration(self.bounceDuration, delay: 0.0, options: .CurveEaseIn, animations: {
+               UIView.animate(withDuration: self.bounceDuration, delay: 0.0, options: .curveEaseIn, animations: {
                 
                 self.layoutCenterPanelContainer()
                }, completion: nil)
@@ -373,13 +387,13 @@ class SVSlidingPanelViewController: UIViewController {
                 
                 let animation = CABasicAnimation(keyPath: "shadowPath")
                 animation.fromValue = view.layer.shadowPath
-                animation.toValue = shadowPath.CGPath
+                animation.toValue = shadowPath.cgPath
                 animation.duration = 0.2
-                view.layer.addAnimation(animation, forKey: "shadowPath")
+                view.layer.add(animation, forKey: "shadowPath")
             }
          
-            view.layer.shadowPath = shadowPath.CGPath;
-            view.layer.shadowColor = UIColor.blackColor().CGColor;
+            view.layer.shadowPath = shadowPath.cgPath;
+            view.layer.shadowColor = UIColor.black.cgColor;
             view.layer.shadowRadius = 2.0
             view.layer.shadowOpacity = 0.75
             view.clipsToBounds = false
@@ -400,22 +414,22 @@ class SVSlidingPanelViewController: UIViewController {
         
         if self.tapView == nil {
             self.tapView = UIView()
-            self.tapView?.backgroundColor = UIColor.clearColor()
-            self.tapView?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            self.tapView?.backgroundColor = UIColor.clear
+            self.tapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         }
         
         self.tapView?.frame = self.centerPanelContainerView.bounds
         self.centerPanelContainerView.addSubview(self.tapView!)
-        self.centerPanelContainerView.bringSubviewToFront(self.tapView!)
+        self.centerPanelContainerView.bringSubview(toFront: self.tapView!)
         
         if self.shouldTapEnabledSliding {
             
-            self.addTapGestureToView(self.tapView!)
+            self.addTapGestureToView(view: self.tapView!)
         }
         
         if self.shouldPanEnabledSliding {
             
-            self.addPanGestureToView(self.tapView!)
+            self.addPanGestureToView(view: self.tapView!)
         }
     }
     
@@ -439,6 +453,7 @@ class SVSlidingPanelViewController: UIViewController {
     private func addPanGestureToView(view: UIView) {
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        panGesture.delegate = self
         panGesture.maximumNumberOfTouches = 1;
         panGesture.minimumNumberOfTouches = 1;
         view.addGestureRecognizer(panGesture)
@@ -452,43 +467,43 @@ class SVSlidingPanelViewController: UIViewController {
             return
         }
         
-        if gesture.state == .Began {
+        if gesture.state == .began {
             
             locationBeforePan = self.centerPanelContainerView.frame.origin
         }
         
-        let translate = gesture.translationInView(self.centerPanelContainerView)
+        let translate = gesture.translation(in: self.centerPanelContainerView)
         var frame = self.centerPanelRestingFrame!
-        frame.origin.x += self.correctMovement(translate.x)
+        frame.origin.x += self.correctMovement(movement: translate.x)
         
         self.centerPanelContainerView.frame = frame
         
         
-        if gesture.state == .Ended {
+        if gesture.state == .ended {
             
             let deltaX =  frame.origin.x - locationBeforePan!.x;
-            if self.validateThresoldPanMovement(deltaX) {
+            if self.validateThresoldPanMovement(delta: deltaX) {
                 
                 switch self.slidingPanelState {
                 case .CenterVisible:
                     if deltaX > 0.0 {
-                        self.showLeftPanel(true)
+                        self.showLeftPanel(animated: true)
                     }
                     else {
-                        self.showRightPanel(true)
+                        self.showRightPanel(animated: true)
                     }
                     
                 case .LeftVisible:
-                    self.showCenterPanel(true)
+                    self.showCenterPanel(animated: true)
                     
                 case .RightVisible:
-                    self.showCenterPanel(true)
+                    self.showCenterPanel(animated: true)
                 }
             }
             else {
                 self.undoPanEvent()
             }
-        }else if gesture.state == .Cancelled {
+        }else if gesture.state == .cancelled {
             
             self.undoPanEvent()
         }
@@ -513,15 +528,16 @@ class SVSlidingPanelViewController: UIViewController {
             
             
         case .CenterVisible:
-            if (position > 0.0  && self.leftPanel != nil) || (position < 0.0  && self.rightPanel != nil) {
+            if (position > 0.0  && self.leftPanel == nil) || (position < 0.0  && self.rightPanel == nil) {
                 return 0.0
             }
-            else if position > self.leftSlidingPanelVisibleWidth {
+            else if self.shouldAllowRightOverPanning &&  position > self.leftSlidingPanelVisibleWidth {
                 return self.leftSlidingPanelVisibleWidth
             }
-            else if position < -self.rightSlidingPanelVisibleWidth {
+            else if self.shouldAllowRightOverPanning && position < -self.rightSlidingPanelVisibleWidth {
                 return -self.rightSlidingPanelVisibleWidth
             }
+            
             
         case .RightVisible:
             if position < -self.rightSlidingPanelVisibleWidth {
@@ -547,7 +563,7 @@ class SVSlidingPanelViewController: UIViewController {
             return delta <= -minimum
             
         case .CenterVisible:
-            return delta >= minimum
+            return fabs(delta) >= minimum
             
         case .RightVisible:
             return delta >= minimum
@@ -558,14 +574,30 @@ class SVSlidingPanelViewController: UIViewController {
     private func undoPanEvent()  {
         switch self.slidingPanelState {
         case .LeftVisible:
-            self.showLeftPanel(true)
+            self.showLeftPanel(animated: true)
             
         case .CenterVisible:
-            self.showCenterPanel(true)
+            self.showCenterPanel(animated: true)
             
         case .RightVisible:
-            self.showRightPanel(true)
+            self.showRightPanel(animated: true)
         }
+    }
+    
+    //MARK: Checking controller is on top level or not
+    
+    func isTopeLevelViewController(_ controller: UIViewController?) -> Bool {
+        
+        guard let topController = controller else {
+            return false
+        }
+        
+        if let navigation = topController as? UINavigationController {
+            
+           return navigation.viewControllers.count == 1
+        }
+        
+        return false
     }
     
     
@@ -579,10 +611,10 @@ class SVSlidingPanelViewController: UIViewController {
         
         if self.slidingPanelState == SVSlidingPanelState.LeftVisible {
             
-            self.showCenterPanel(true)
+            self.showCenterPanel(animated: true)
         }
         else {
-            self.showLeftPanel(true)
+            self.showLeftPanel(animated: true)
         }
     }
     
@@ -601,7 +633,7 @@ class SVSlidingPanelViewController: UIViewController {
         }
         else {
             self.layoutPanelContainer()
-            self.styleForContainer(self.centerPanelContainerView, animationOption: true)
+            self.styleForContainer(containerView: self.centerPanelContainerView, animationOption: true)
             self.leftPanel?.viewWillAppear(animated)
             self.addTapViewOnCenterPanelContainer()
         }
@@ -630,7 +662,7 @@ class SVSlidingPanelViewController: UIViewController {
         }
         else {
             self.layoutPanelContainer()
-            self.styleForContainer(self.centerPanelContainerView, animationOption: true)
+            self.styleForContainer(containerView: self.centerPanelContainerView, animationOption: true)
             self.removeTapViewOnCenterPanelContainer()
         }
         
@@ -646,11 +678,11 @@ class SVSlidingPanelViewController: UIViewController {
         
         if self.slidingPanelState == SVSlidingPanelState.RightVisible {
             
-            self.showCenterPanel(true)
+            self.showCenterPanel(animated: true)
         }
         else {
             
-            self.showRightPanel(true)
+            self.showRightPanel(animated: true)
         }
     }
     
@@ -668,7 +700,7 @@ class SVSlidingPanelViewController: UIViewController {
         }
         else {
             self.layoutPanelContainer()
-            self.styleForContainer(self.centerPanelContainerView, animationOption: true)
+            self.styleForContainer(containerView: self.centerPanelContainerView, animationOption: true)
             self.rightPanel?.viewWillAppear(animated)
             self.addTapViewOnCenterPanelContainer()
         }
@@ -680,7 +712,7 @@ class SVSlidingPanelViewController: UIViewController {
     
     func leftPanelHamburgurButton() -> UIBarButtonItem {
         
-        return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItemStyle.Done, target: self, action: #selector(toggleLeftSlidingPanel))
+        return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItemStyle.done, target: self, action: #selector(toggleLeftSlidingPanel))
     }
     
     
@@ -688,7 +720,40 @@ class SVSlidingPanelViewController: UIViewController {
     
     func rightPanelHamburgurButton() -> UIBarButtonItem {
         
-        return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItemStyle.Done, target: self, action: #selector(toggleRightSlidingPanel))
+        return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItemStyle.done, target: self, action: #selector(toggleRightSlidingPanel))
+    }
+    
+    
+    //MARK: UIGestureRecognizerDelegate
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        if (gestureRecognizer.view == self.tapView) {
+            return true
+        }
+        else if self.shouldPanningLimitedToTopViewController && !self.isTopeLevelViewController(self.centerPanel) {
+            return false
+        }
+        else if let gesture =  gestureRecognizer as? UIPanGestureRecognizer {
+            
+            let translate = gesture.translation(in: self.centerPanelContainerView)
+            
+            if translate.x < 0 && !self.shouldAllowRightOverPanning {
+                return false
+            }
+            
+            if translate.x > 0 && !self.shouldAllowLeftOverPanning {
+               return false
+            }
+            
+            let possible = translate.x != 0 && ((fabs(translate.y) / fabs(translate.x)) < 1.0)
+            
+            if (possible && ((translate.x > 0 && self.leftPanel != nil) || (translate.x < 0 && self.rightPanel != nil))) {
+                return true;
+            }
+            
+        }
+        return false
     }
     
     
@@ -698,16 +763,18 @@ class SVSlidingPanelViewController: UIViewController {
         
         guard let image = defaultImage else {
             
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(20.0, 13.0), false, 0.0)
-            UIColor.blackColor().setFill()
-            UIBezierPath(rect: CGRectMake(0, 0, 20, 1)).fill()
-            UIBezierPath(rect: CGRectMake(0, 5, 20, 1)).fill()
-            UIBezierPath(rect: CGRectMake(0, 10, 20, 1)).fill()
             
-            UIColor.whiteColor().setFill()
-            UIBezierPath(rect: CGRectMake(0, 1, 20, 2)).fill()
-            UIBezierPath(rect: CGRectMake(0, 6, 20, 2)).fill()
-            UIBezierPath(rect: CGRectMake(0, 11, 20, 2)).fill()
+            UIGraphicsBeginImageContextWithOptions(CGSize(width: 20, height: 13), false, 0.0)
+            UIColor.black.setFill()
+            
+            UIBezierPath(rect: CGRect(x: 0, y: 0, width: 20, height: 1)).fill()
+            UIBezierPath(rect: CGRect(x: 0, y: 5, width: 20, height: 1)).fill()
+            UIBezierPath(rect: CGRect(x: 0, y: 10, width: 20, height: 1)).fill()
+            
+            UIColor.white.setFill()
+            UIBezierPath(rect: CGRect(x: 0, y: 1, width: 20, height: 2)).fill()
+            UIBezierPath(rect: CGRect(x: 0, y: 6, width: 20, height: 2)).fill()
+            UIBezierPath(rect: CGRect(x: 0, y: 11, width: 20, height: 2)).fill()
             
             defaultImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
@@ -717,3 +784,4 @@ class SVSlidingPanelViewController: UIViewController {
         return image
     }
 }
+
