@@ -597,6 +597,11 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
            return navigation.viewControllers.count == 1
         }
         
+        if let tabbar = topController as? UITabBarController {
+            
+            return self.isTopeLevelViewController(tabbar.selectedViewController)
+        }
+        
         return false
     }
     
@@ -754,6 +759,11 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
             
         }
         return false
+    }
+    
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        
+        return self.centerPanel
     }
     
     
