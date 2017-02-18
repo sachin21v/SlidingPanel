@@ -312,7 +312,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
         else {
             leftPanelFrame.origin.x = 0.0
             leftPanelFrame.size.width = self.leftSlidingPanelVisibleWidth
-            rightPanelFrame.origin.x = rightPanelFrame.origin.x - self.rightSlidingPanelVisibleWidth
+            rightPanelFrame.origin.x = self.rightSlidingPanelVisibleWidth
             rightPanelFrame.size.width = self.rightSlidingPanelVisibleWidth
         }
 
