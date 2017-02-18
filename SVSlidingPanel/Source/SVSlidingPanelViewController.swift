@@ -602,7 +602,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
             return self.isTopeLevelViewController(tabbar.selectedViewController)
         }
         
-        return false
+        return true
     }
     
     
