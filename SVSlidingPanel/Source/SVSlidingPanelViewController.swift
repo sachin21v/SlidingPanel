@@ -443,8 +443,12 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     private func addTapGestureToView(view: UIView) {
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showCenterPanel))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showPanelFromTapGesture))
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func showPanelFromTapGesture() {
+        self.showCenterPanel(animated: true)
     }
     
     
