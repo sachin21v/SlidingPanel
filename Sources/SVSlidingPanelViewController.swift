@@ -765,7 +765,7 @@ open class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDe
         return false
     }
     
-	override var childForStatusBarHidden: UIViewController? {
+	override open var childForStatusBarHidden: UIViewController? {
         
         return self.centerPanel
     }
