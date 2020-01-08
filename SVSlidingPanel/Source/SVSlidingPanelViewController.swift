@@ -567,7 +567,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
             return delta <= -minimum
             
         case .CenterVisible:
-            return fabs(delta) >= minimum
+			return abs(delta) >= minimum
             
         case .RightVisible:
             return delta >= minimum
@@ -755,7 +755,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
                return false
             }
             
-            let possible = translate.x != 0 && ((fabs(translate.y) / fabs(translate.x)) < 1.0)
+			let possible = translate.x != 0 && ((abs(translate.y) / abs(translate.x)) < 1.0)
             
             if (possible && ((translate.x > 0 && self.leftPanel != nil) || (translate.x < 0 && self.rightPanel != nil))) {
                 return true;
