@@ -12,10 +12,10 @@
 		F69F97941D643AEF004A6EB5 /* SVMenuOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978D1D643AEF004A6EB5 /* SVMenuOptionManager.swift */; };
 		F69F97951D643AEF004A6EB5 /* SVMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978E1D643AEF004A6EB5 /* SVMenuViewController.swift */; };
 		F69F97961D643AEF004A6EB5 /* SVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F978F1D643AEF004A6EB5 /* SVViewController.swift */; };
-		F69F97971D643AEF004A6EB5 /* SVSlidingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F97911D643AEF004A6EB5 /* SVSlidingPanelViewController.swift */; };
 		F69F979A1D643B46004A6EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69F97981D643B46004A6EB5 /* Assets.xcassets */; };
 		F6AB4F701D5AEFF400AADEE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB4F6E1D5AEFF400AADEE6 /* Main.storyboard */; };
 		F6AB4F751D5AEFF400AADEE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB4F731D5AEFF400AADEE6 /* LaunchScreen.storyboard */; };
+		F6F58AA823C65CD300C3E8D0 /* SVSlidingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F58AA723C65CD300C3E8D0 /* SVSlidingPanelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +24,12 @@
 		F69F978D1D643AEF004A6EB5 /* SVMenuOptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMenuOptionManager.swift; sourceTree = "<group>"; };
 		F69F978E1D643AEF004A6EB5 /* SVMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMenuViewController.swift; sourceTree = "<group>"; };
 		F69F978F1D643AEF004A6EB5 /* SVViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVViewController.swift; sourceTree = "<group>"; };
-		F69F97911D643AEF004A6EB5 /* SVSlidingPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVSlidingPanelViewController.swift; sourceTree = "<group>"; };
 		F69F97981D643B46004A6EB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69F97991D643B46004A6EB5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6AB4F671D5AEFF400AADEE6 /* SVSlidingPanel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVSlidingPanel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6AB4F6F1D5AEFF400AADEE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6AB4F741D5AEFF400AADEE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F6F58AA723C65CD300C3E8D0 /* SVSlidingPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVSlidingPanelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,17 +57,10 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		F69F97901D643AEF004A6EB5 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F69F97911D643AEF004A6EB5 /* SVSlidingPanelViewController.swift */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
 		F6AB4F5E1D5AEFF400AADEE6 = {
 			isa = PBXGroup;
 			children = (
+				F6F58AA623C65CD300C3E8D0 /* Sources */,
 				F6AB4F691D5AEFF400AADEE6 /* SVSlidingPanel */,
 				F6AB4F681D5AEFF400AADEE6 /* Products */,
 			);
@@ -85,11 +78,18 @@
 			isa = PBXGroup;
 			children = (
 				F69F978A1D643AEF004A6EB5 /* Demo */,
-				F69F97901D643AEF004A6EB5 /* Source */,
 				F6AB4F731D5AEFF400AADEE6 /* LaunchScreen.storyboard */,
 				F6AB4F6E1D5AEFF400AADEE6 /* Main.storyboard */,
 			);
 			path = SVSlidingPanel;
+			sourceTree = "<group>";
+		};
+		F6F58AA623C65CD300C3E8D0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F6F58AA723C65CD300C3E8D0 /* SVSlidingPanelViewController.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,7 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F69F97931D643AEF004A6EB5 /* SVDetailViewController.swift in Sources */,
-				F69F97971D643AEF004A6EB5 /* SVSlidingPanelViewController.swift in Sources */,
+				F6F58AA823C65CD300C3E8D0 /* SVSlidingPanelViewController.swift in Sources */,
 				F69F97921D643AEF004A6EB5 /* AppDelegate.swift in Sources */,
 				F69F97951D643AEF004A6EB5 /* SVMenuViewController.swift in Sources */,
 				F69F97961D643AEF004A6EB5 /* SVViewController.swift in Sources */,
@@ -293,10 +293,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = J5NUXYU6XJ;
 				INFOPLIST_FILE = SVSlidingPanel/Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.svslidingpanel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -313,10 +315,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = J5NUXYU6XJ;
 				INFOPLIST_FILE = SVSlidingPanel/Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.svslidingpanel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
