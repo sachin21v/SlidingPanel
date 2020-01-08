@@ -95,14 +95,14 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     //MARK: - Left panel holding the controller to show
     var leftPanel: UIViewController? {
         didSet{
-            oldValue?.willMove(toParentViewController: nil)
+			oldValue?.willMove(toParent: nil)
             oldValue?.view.removeFromSuperview()
-            oldValue?.removeFromParentViewController()
+			oldValue?.removeFromParent()
             
             self.leftPanel?.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            self.addChildViewController(self.leftPanel!)
+			self.addChild(self.leftPanel!)
             self.leftPanelContainerView.addSubview((self.leftPanel?.view)!)
-            self.leftPanel?.didMove(toParentViewController: self)
+			self.leftPanel?.didMove(toParent: self)
         }
     }
     
@@ -112,14 +112,14 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     var centerPanel: UIViewController? {
         didSet{
             
-            oldValue?.willMove(toParentViewController: nil)
+			oldValue?.willMove(toParent: nil)
             oldValue?.view.removeFromSuperview()
-            oldValue?.removeFromParentViewController()
+			oldValue?.removeFromParent()
             
             self.centerPanel?.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            self.addChildViewController(self.centerPanel!)
+			self.addChild(self.centerPanel!)
             self.centerPanelContainerView.addSubview((self.centerPanel?.view)!)
-            self.centerPanel?.didMove(toParentViewController: self)
+			self.centerPanel?.didMove(toParent: self)
             
             if self.shouldPanEnabledSliding {
              self.addPanGestureToView(view: (self.centerPanel?.view)!)
@@ -133,14 +133,14 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     //MARK: - Right panel holding the controller to show
     var rightPanel: UIViewController? {
         didSet{
-            oldValue?.willMove(toParentViewController: nil)
+			oldValue?.willMove(toParent: nil)
             oldValue?.view.removeFromSuperview()
-            oldValue?.removeFromParentViewController()
+			oldValue?.removeFromParent()
             
             self.rightPanel?.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            self.addChildViewController(self.rightPanel!)
+			self.addChild(self.rightPanel!)
             self.rightPanelContainerView.addSubview((self.rightPanel?.view)!)
-            self.rightPanel?.didMove(toParentViewController: self)
+			self.rightPanel?.didMove(toParent: self)
         }
     }
     
@@ -223,7 +223,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
         self.hamburgurButtonForRightPanel()
         
         self.slidingPanelState = .CenterVisible
-        self.view?.bringSubview(toFront: self.centerPanelContainerView)
+		self.view?.bringSubviewToFront(self.centerPanelContainerView)
     }
     
     
@@ -420,7 +420,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
         
         self.tapView?.frame = self.centerPanelContainerView.bounds
         self.centerPanelContainerView.addSubview(self.tapView!)
-        self.centerPanelContainerView.bringSubview(toFront: self.tapView!)
+		self.centerPanelContainerView.bringSubviewToFront(self.tapView!)
         
         if self.shouldTapEnabledSliding {
             
@@ -616,7 +616,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: Left Sliding Panel show/hide methods
     
-    func toggleLeftSlidingPanel() {
+	@objc func toggleLeftSlidingPanel() {
         
         if self.slidingPanelState == SVSlidingPanelState.LeftVisible {
             
@@ -683,7 +683,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
      //MARK: Right Sliding Panel show/hide methods
     
     
-    func toggleRightSlidingPanel() {
+	@objc func toggleRightSlidingPanel() {
         
         if self.slidingPanelState == SVSlidingPanelState.RightVisible {
             
@@ -721,7 +721,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     func leftPanelHamburgurButton() -> UIBarButtonItem {
         
-        return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItemStyle.done, target: self, action: #selector(toggleLeftSlidingPanel))
+		return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItem.Style.done, target: self, action: #selector(toggleLeftSlidingPanel))
     }
     
     
@@ -729,7 +729,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     func rightPanelHamburgurButton() -> UIBarButtonItem {
         
-        return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItemStyle.done, target: self, action: #selector(toggleRightSlidingPanel))
+		return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItem.Style.done, target: self, action: #selector(toggleRightSlidingPanel))
     }
     
     
@@ -765,7 +765,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
         return false
     }
     
-    override var childViewControllerForStatusBarHidden: UIViewController? {
+	override var childForStatusBarHidden: UIViewController? {
         
         return self.centerPanel
     }
