@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "SVSlidingPanel"
-  spec.version      = "1.1.0"
+  spec.version      = "1.1.1"
   spec.summary      = "SVSlidingPanel is a UIViewController container designed for center panel with revealable side panels."
 
   spec.description  = <<-DESC
@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
 
   spec.platform     = :ios, "8.0"
 
-  spec.source       = { :git => "https://github.com/sachin21v/SlidingPanel.git", :tag => "1.1.0" }
+  spec.source       = { :git => "https://github.com/sachin21v/SlidingPanel.git", :tag => "1.1.1" }
 
   spec.source_files  = "Sources/"
   # spec.exclude_files = "Classes/Exclude"
