@@ -20,80 +20,80 @@ enum SVSlidingPanelState {
     case RightVisible
 }
 
-class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegate {
+open class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     //MARK: - Public properties
     
     //MARK: - return current visible controller
-    var visibleController: UIViewController?
+    public var visibleController: UIViewController?
     
     //MARK: - Width(Percentage of screen) that will show left sliding panel
     
     // Default Value - 0.5 (Range between 0 and 1)
-    var leftPanelVisibleWidth: CGFloat = 0.5
+    public var leftPanelVisibleWidth: CGFloat = 0.5
     
     
     
     //MARK: - Width(Percentage of screen) that will show right sliding panel
     // Default Value - 0.5 (Range between 0 and 1)
-    var rightPanelVisibleWidth: CGFloat = 0.5
+    public var rightPanelVisibleWidth: CGFloat = 0.5
     
     
     
     //MARK: - Movement(Percentage of screen) after that panel will toggel its state
     // Default Value - 0.15 (Range between 0 and 1)
-    var panMovementThresold: CGFloat = 0.15
+    public var panMovementThresold: CGFloat = 0.15
     
     
     
     //MARK: - Time used for animation while toggling sliding panels
     // Default Value - 0.3 (Seconds)
-    var animationDuration: Double = 0.3
+    public var animationDuration: Double = 0.3
     
     
     
     //MARK: - Enabling panning on center sliding panel
-    var shouldPanEnabledSliding: Bool = true
+    public var shouldPanEnabledSliding: Bool = true
     
     //MARK: - Enabling panning on  top view controller of 
     // center sliding panel only
-    var shouldPanningLimitedToTopViewController: Bool = true
+    public var shouldPanningLimitedToTopViewController: Bool = true
     
     
     //MARK: - Enabling  left over panning on center sliding panel
-    var shouldAllowLeftOverPanning: Bool = true
+    public var shouldAllowLeftOverPanning: Bool = true
     
     
     //MARK: - Enabling right over panning on center sliding panel
-    var shouldAllowRightOverPanning: Bool = true
+    public var shouldAllowRightOverPanning: Bool = true
     
     
     
     //MARK: - Enabling tapping on center sliding panel
-    var shouldTapEnabledSliding: Bool = true
+    public var shouldTapEnabledSliding: Bool = true
     
     
     
     //MARK: - Enabling rotaion of controller with rotation of device
-    var shouldAutoRotationEnabled: Bool = true
+    public var shouldAutoRotationEnabled: Bool = true
     
     
     //MARK: - Applying animation while toggling side panel
-    var shouldAnimateSidePanel: Bool = false
+    public var shouldAnimateSidePanel: Bool = false
     
     
     //MARK: - Applying animation while toggling side panel
-    var shouldBounceEnableSliding: Bool = true
+    public var shouldBounceEnableSliding: Bool = true
     
     //MARK: - Time used for bounce while toggling sliding panels
     // Default Value - 0.3 (Seconds)
-    var bounceDuration: Double = 0.1
+    public var bounceDuration: Double = 0.1
     
     
     
     //MARK: - Left panel holding the controller to show
-    var leftPanel: UIViewController? {
+    public var leftPanel: UIViewController? {
         didSet{
 			oldValue?.willMove(toParent: nil)
             oldValue?.view.removeFromSuperview()
@@ -109,7 +109,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     
     //MARK: - Center panel holding the controller to show
-    var centerPanel: UIViewController? {
+    public var centerPanel: UIViewController? {
         didSet{
             
 			oldValue?.willMove(toParent: nil)
@@ -131,7 +131,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     
     //MARK: - Right panel holding the controller to show
-    var rightPanel: UIViewController? {
+    public var rightPanel: UIViewController? {
         didSet{
 			oldValue?.willMove(toParent: nil)
             oldValue?.view.removeFromSuperview()
@@ -191,7 +191,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
@@ -227,7 +227,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.layoutPanelContainer()
@@ -248,7 +248,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+    override open func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         
         self.layoutPanelContainer()
         self.styleForContainer(containerView: self.centerPanelContainerView, animationOption: false)
@@ -590,7 +590,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: Checking controller is on top level or not
     
-    func isTopeLevelViewController(_ controller: UIViewController?) -> Bool {
+    public func isTopeLevelViewController(_ controller: UIViewController?) -> Bool {
         
         guard let topController = controller else {
             return false
@@ -616,7 +616,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: Left Sliding Panel show/hide methods
     
-	@objc func toggleLeftSlidingPanel() {
+	@objc public  func toggleLeftSlidingPanel() {
         
         if self.slidingPanelState == SVSlidingPanelState.LeftVisible {
             
@@ -630,7 +630,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     
     
-    func showLeftPanel(animated:Bool) {
+    public func showLeftPanel(animated:Bool) {
         
         self.slidingPanelState = .LeftVisible
         if animated {
@@ -654,7 +654,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
      //MARK: Center Sliding Panel show/hide method
     
-    func showCenterPanel(animated:Bool) {
+    public func showCenterPanel(animated:Bool) {
         
         self.slidingPanelState = .CenterVisible
         self.hamburgurButtonForLeftPanel()
@@ -683,7 +683,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
      //MARK: Right Sliding Panel show/hide methods
     
     
-	@objc func toggleRightSlidingPanel() {
+	@objc public  func toggleRightSlidingPanel() {
         
         if self.slidingPanelState == SVSlidingPanelState.RightVisible {
             
@@ -696,7 +696,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     
-    func showRightPanel(animated:Bool) {
+    public func showRightPanel(animated:Bool) {
         
         self.slidingPanelState = .RightVisible
         
@@ -719,7 +719,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: Hamburgur Button for Left Panel
     
-    func leftPanelHamburgurButton() -> UIBarButtonItem {
+    public func leftPanelHamburgurButton() -> UIBarButtonItem {
         
 		return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItem.Style.done, target: self, action: #selector(toggleLeftSlidingPanel))
     }
@@ -727,7 +727,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: Hamburgur Button for Right Panel
     
-    func rightPanelHamburgurButton() -> UIBarButtonItem {
+    public func rightPanelHamburgurButton() -> UIBarButtonItem {
         
 		return UIBarButtonItem(image: SVSlidingPanelViewController.defaultHamburgerImage(), style: UIBarButtonItem.Style.done, target: self, action: #selector(toggleRightSlidingPanel))
     }
@@ -735,7 +735,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: UIGestureRecognizerDelegate
     
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         if (gestureRecognizer.view == self.tapView) {
             return true
@@ -773,7 +773,7 @@ class SVSlidingPanelViewController: UIViewController, UIGestureRecognizerDelegat
     
     //MARK: Hamburgur image
     
-    static func defaultHamburgerImage() -> UIImage {
+    public static func defaultHamburgerImage() -> UIImage {
         
         guard let image = defaultImage else {
             
